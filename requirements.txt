@@ -63,7 +63,6 @@ pyparsing==3.3.2
 python-dotenv==1.2.2
 python-multipart==0.0.24
 python-telegram-bot==22.7
--e git+https://github.com/nanjiye92/PythonClaw.git@7787bb433590ca2d1ee27b99819d68ad8fc3efd2#egg=pythonclaw
 pywa==3.9.0
 PyYAML==6.0.3
 rank-bm25==0.2.2
