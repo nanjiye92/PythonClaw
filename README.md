@@ -1,75 +1,54 @@
-<p align="center">
-  <img src="assets/logo-300.png" alt="PythonClaw" width="160">
-</p>
 
 <h1 align="center">PythonClaw</h1>
 
 <p align="center">
-  <strong>OpenClaw, reimagined in pure Python — purely Pythonic design.</strong><br>
-  Memory · RAG · Skills · Web Dashboard · Voice · Daemon · Multi-Channel
+  <strong>OpenClaw 的纯 Python 版本</strong><br>
+  记忆 · RAG · skills · Web 仪表盘 · 语音 · 守护进程Daemon · 多渠道channel
 </p>
 
-<p align="center">
-  <a href="https://github.com/ericwang915/PythonClaw/actions/workflows/ci.yml">
-    <img src="https://github.com/ericwang915/PythonClaw/actions/workflows/ci.yml/badge.svg" alt="CI">
-  </a>
-  <a href="https://pypi.org/project/pythonclaw/">
-    <img src="https://img.shields.io/pypi/v/pythonclaw?color=blue" alt="PyPI">
-  </a>
-  <img src="https://img.shields.io/pypi/pyversions/pythonclaw" alt="Python">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/github/license/ericwang915/PythonClaw" alt="MIT License">
-  </a>
-  <a href="https://github.com/ericwang915/PythonClaw/stargazers">
-    <img src="https://img.shields.io/github/stars/ericwang915/PythonClaw?style=social" alt="Stars">
-  </a>
-</p>
 
-<p align="center">
-  <em>The Python port of <a href="https://github.com/openclaw/openclaw">OpenClaw</a> — no Node.js, no Rust, no C extensions. Just Python.</em>
-</p>
 
 ---
 
-## Highlights
+## 主要特性
 
-| | Feature | Details |
-|---|---------|---------|
-| 🧠 | **Provider-agnostic** | DeepSeek, Grok, Claude, Gemini, Kimi, GLM — or any OpenAI-compatible API |
-| 🛠️ | **Three-tier skills** | Progressive loading: metadata → instructions → resources. Community marketplace via [ClawHub](https://clawhub.com) (13K+ free skills) |
-| 💾 | **Persistent memory** | Markdown-based long-term memory with daily logs and semantic recall |
-| 🔍 | **Hybrid RAG** | BM25 + dense embeddings + RRF fusion + LLM re-ranking |
-| 🌐 | **Web dashboard** | Browser UI for chat, config, skill catalog, identity editing, and marketplace |
-| 🎙️ | **Voice input** | Deepgram speech-to-text in the web chat |
-| ⏰ | **Cron jobs** | Schedule tasks via YAML or let the agent create its own |
-| 📡 | **Multi-channel** | CLI, Web, Telegram, Discord, WhatsApp — same agent, different interfaces |
-| 🔄 | **Daemon mode** | PID-managed background process with `start` / `stop` / `status` |
-| 🧬 | **Soul + Persona** | Separate core identity from swappable role presentation |
-| 🔧 | **TOOLS.md** | Local environment notes — your cheat sheet for the agent |
-| 🔒 | **Per-group isolation** | Each chat session gets its own memory (optional) |
-| 🔁 | **Concurrency control** | Per-session locks + global semaphore prevent interleaving |
+| | 特性 | 详细信息 |
+|---|---------|--------|
+| 🧠 | **与提供商无关** | DeepSeek、Grok、Claude、Gemini、Kimi、GLM — 或任何兼容 OpenAI 的 API |
+| 🛠️ | **三层技能系统** | 渐进式加载：元数据 → 指令 → 资源。通过 [ClawHub](https://clawhub.com) 社区市场（13K+ 免费技能） |
+| 💾 | **持久记忆** | 基于 Markdown 的长期记忆，包含每日日志和语义召回 |
+| 🔍 | **混合 RAG** | BM25 + 密集嵌入 + RRF 融合 + LLM 重排序 |
+| 🌐 | **Web 仪表盘** | 浏览器 UI，用于聊天、配置、技能目录、身份编辑和市场 |
+| 🎙️ | **语音输入** | Web 聊天中的 Deepgram 语音转文本 |
+| ⏰ | **定时任务** | 通过 YAML 安排任务或让代理创建自己的任务 |
+| 📡 | **多渠道** | CLI、Web、Telegram、Discord、WhatsApp — 相同的代理，不同的界面 |
+| 🔄 | **守护进程模式** | PID 管理的后台进程，带有 `start` / `stop` / `status` 命令 |
+| 🧬 | **灵魂 + 角色** | 将核心身份与可交换的角色呈现分开 |
+| 🔧 | **TOOLS.md** | 本地环境笔记 — 代理的备忘单 |
+| 🔒 | **按组隔离** | 每个聊天会话获取自己的记忆（可选） |
+| 🔁 | **并发控制** | 每会话锁 + 全局信号量防止交错 |
 
 ---
 
-## Quick Start
+## 快速开始
 
 ```bash
 pip install pythonclaw
 
-# First-time setup — choose your LLM provider and enter API key
+# 首次设置 — 选择 LLM 提供商并输入 API 密钥
 pythonclaw onboard
 
-# Start the agent daemon (web dashboard at http://localhost:7788)
+# 启动代理守护进程（Web 仪表盘位于 http://localhost:7788）
 pythonclaw start
 
-# Interactive CLI chat
+# 交互式 CLI 聊天
 pythonclaw chat
 
-# Stop the daemon
+# 停止守护进程
 pythonclaw stop
 ```
 
-**From source:**
+**从源码安装：**
 
 ```bash
 git clone https://github.com/ericwang915/PythonClaw.git
@@ -80,32 +59,32 @@ pythonclaw onboard
 
 ---
 
-## CLI Reference
+## 命令行参考
 
-| Command | Description |
-|---------|-------------|
-| `pythonclaw onboard` | Interactive setup wizard — choose LLM provider, enter API key |
-| `pythonclaw start` | Start the agent as a background daemon |
-| `pythonclaw start -f` | Start in foreground (no daemonize) |
-| `pythonclaw start --channels telegram discord whatsapp` | Start with messaging channels |
-| `pythonclaw stop` | Stop the running daemon |
-| `pythonclaw status` | Show daemon status (PID, uptime, port) |
-| `pythonclaw chat` | Interactive CLI chat (foreground REPL) |
-| `pythonclaw skill search <query>` | Search skills on [ClawHub](https://clawhub.com) |
-| `pythonclaw skill browse` | Browse top-rated skills |
-| `pythonclaw skill install <id>` | Install a community skill |
-| `pythonclaw skill info <id>` | View skill details |
+| 命令 | 描述 |
+|---------|------------|
+| `pythonclaw onboard` | 交互式设置向导 — 选择 LLM 提供商，输入 API 密钥 |
+| `pythonclaw start` | 以后台守护进程方式启动代理 |
+| `pythonclaw start -f` | 在前台启动（不守护进程化） |
+| `pythonclaw start --channels telegram discord whatsapp` | 启动时启用消息渠道 |
+| `pythonclaw stop` | 停止运行中的守护进程 |
+| `pythonclaw status` | 显示守护进程状态（PID、运行时间、端口） |
+| `pythonclaw chat` | 交互式 CLI 聊天（前台 REPL） |
+| `pythonclaw skill search <query>` | 在 [ClawHub](https://clawhub.com) 上搜索技能 |
+| `pythonclaw skill browse` | 浏览评分最高的技能 |
+| `pythonclaw skill install <id>` | 安装社区技能 |
+| `pythonclaw skill info <id>` | 查看技能详情 |
 
-### First Run
+### 首次运行
 
 ```
 $ pythonclaw start
 
   ╔══════════════════════════════════════╗
-  ║       PythonClaw — Setup Wizard      ║
+  ║       PythonClaw — 设置向导          ║
   ╚══════════════════════════════════════╝
 
-  Choose your LLM provider:
+  选择您的 LLM 提供商：
 
     1. DeepSeek
     2. Grok (xAI)
@@ -114,63 +93,63 @@ $ pythonclaw start
     5. Kimi (Moonshot)
     6. GLM (Zhipu / ChatGLM)
 
-  Enter number (1-6): 2
+  输入数字 (1-6): 2
   → Grok (xAI)
 
-  API Key: ********
-  → Key set (xai-****)
+  API 密钥: ********
+  → 密钥已设置 (xai-****)
 
-  Validating... ✔ Valid!
-  ✔ Setup complete!
+  验证中... ✔ 有效！
+  ✔ 设置完成！
 
-[PythonClaw] Daemon started (PID 12345).
-[PythonClaw] Dashboard: http://localhost:7788
+[PythonClaw] 守护进程已启动 (PID 12345)。
+[PythonClaw] 仪表盘: http://localhost:7788
 ```
 
 ---
 
-## Architecture
+## 架构
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                         PythonClaw                            │
 ├──────────┬────────────┬───────────┬──────────────────────────┤
-│ CLI      │ Daemon     │ Sessions  │      Core                │
+│ CLI      │ 守护进程   │ 会话管理  │      核心                │
 │          │            │           │                          │
 │ onboard  │ start /    │ Store(MD) │ Agent                    │
-│ chat     │ stop /     │ Manager   │ ├─ Memory (Markdown)     │
-│ skill …  │ status     │ Locks +   │ ├─ RAG (Hybrid)          │
-│          │            │ Semaphore │ ├─ Skills (3-tier)        │
-│ Web UI ◄─┤ Channels   │           │ ├─ Compaction            │
-│ Voice In │ Telegram   │ Per-group │ ├─ Soul + Persona        │
-│          │ Discord    │ Isolation │ ├─ Group Context          │
-│          │ WhatsApp   │           │ └─ Tool Execution        │
+│ chat     │ stop /     │ Manager   │ ├─ 记忆 (Markdown)       │
+│ skill …  │ status     │ Locks +   │ ├─ RAG (混合)            │
+│          │            │ Semaphore │ ├─ 技能 (3层)            │
+│ Web UI ◄─┤ 渠道       │           │ ├─ 压缩                  │
+│ 语音输入  │ Telegram   │ 按组隔离  │ ├─ 灵魂 + 角色          │
+│          │ Discord    │           │ ├─ 组上下文              │
+│          │ WhatsApp   │           │ └─ 工具执行              │
 ├──────────┴────────────┴───────────┴──────────────────────────┤
-│               LLM Provider Abstraction Layer                 │
+│               LLM 提供商抽象层                               │
 │ DeepSeek │ Grok │ Claude │ Gemini │ Kimi │ GLM              │
 ├──────────────────────────────────────────────────────────────┤
-│              ClawHub Marketplace (clawhub.com)               │
+│              ClawHub 市场 (clawhub.com)                      │
 └──────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Web Dashboard
+## Web 仪表盘
 
-Start with `pythonclaw start` and open **http://localhost:7788**.
+使用 `pythonclaw start` 启动并打开 **http://localhost:7788**。
 
-- **Dashboard** — agent status, soul/persona preview, tool list
-- **Chat** — real-time chat with voice input (Deepgram)
-- **Skill Catalog** — browse installed skills by category
-- **Marketplace** — search and install skills from [ClawHub](https://clawhub.com)
-- **Configuration** — edit LLM provider, API keys, and settings in-browser
+- **仪表盘** — 代理状态、灵魂/角色预览、工具列表
+- **聊天** — 实时聊天，支持语音输入（Deepgram）
+- **技能目录** — 按类别浏览已安装的技能
+- **市场** — 从 [ClawHub](https://clawhub.com) 搜索和安装技能
+- **配置** — 在浏览器中编辑 LLM 提供商、API 密钥和设置
 
 ---
 
-## Configuration
+## 配置
 
-All configuration lives in `pythonclaw.json` (auto-created by `pythonclaw onboard`).
-See [`pythonclaw.example.json`](pythonclaw.example.json) for the full template.
+所有配置都存储在 `pythonclaw.json` 中（由 `pythonclaw onboard` 自动创建）。
+请参阅 [`pythonclaw.example.json`](pythonclaw.example.json) 获取完整模板。
 
 ```jsonc
 {
@@ -191,94 +170,93 @@ See [`pythonclaw.example.json`](pythonclaw.example.json) for the full template.
 }
 ```
 
-Environment variables (e.g. `DEEPSEEK_API_KEY`, `TAVILY_API_KEY`) override JSON values.
+环境变量（如 `DEEPSEEK_API_KEY`、`TAVILY_API_KEY`）会覆盖 JSON 值。
 
 ---
 
-## Supported LLM Providers
+## 支持的 LLM 提供商
 
-| Provider | Default Model | Install Extra |
+| 提供商 | 默认模型 | 安装额外项 |
 |----------|---------------|---------------|
 | **DeepSeek** | `deepseek-chat` | — |
 | **Grok (xAI)** | `grok-3` | — |
-| **Claude (Anthropic)** | `claude-sonnet-4-20250514` | — (included) |
-| **Gemini (Google)** | `gemini-2.0-flash` | — (included) |
+| **Claude (Anthropic)** | `claude-sonnet-4-20250514` | — (已包含) |
+| **Gemini (Google)** | `gemini-2.0-flash` | — (已包含) |
 | **Kimi (Moonshot)** | `moonshot-v1-128k` | — |
 | **GLM (Zhipu)** | `glm-4-flash` | — |
-| Any OpenAI-compatible | Custom | — |
+| 任何兼容 OpenAI 的 | 自定义 | — |
 
 ---
 
-## Skills
+## 技能
 
-### Three-Tier Progressive Loading
+### 三层渐进式加载
 
-| Level | Loaded When | Content |
-|-------|-------------|---------|
-| **L1 — Metadata** | Always (startup) | `name` + `description` from YAML frontmatter |
-| **L2 — Instructions** | Agent activates skill | Full SKILL.md body |
-| **L3 — Resources** | As needed | Bundled scripts, schemas, data files |
+| 级别 | 加载时机 | 内容 |
+|-------|-------------|--------|
+| **L1 — 元数据** | 始终（启动时） | YAML 前置 matter 中的 `name` + `description` |
+| **L2 — 指令** | 代理激活技能时 | 完整的 SKILL.md 内容 |
+| **L3 — 资源** | 按需 | 捆绑的脚本、模式、数据文件 |
 
 ```yaml
 ---
 name: code_runner
-description: Execute Python code safely in an isolated subprocess.
+description: 在隔离的子进程中安全执行 Python 代码。
 ---
-# Code Runner
+# 代码运行器
 
-## Instructions
-Run `python {skill_path}/run_code.py "expression"`
+## 指令
+运行 `python {skill_path}/run_code.py "expression"`
 ```
 
-### ClawHub Marketplace
+### ClawHub 市场
 
-Browse and install 13,000+ community skills from [ClawHub](https://clawhub.com) — free, no API key required:
+浏览并安装来自 [ClawHub](https://clawhub.com) 的 13,000+ 社区技能 — 免费，无需 API 密钥：
 
 ```bash
-pythonclaw skill search "database backup"
+pythonclaw skill search "数据库备份"
 pythonclaw skill install <skill-id>
 ```
 
-Also accessible from the web dashboard **Marketplace** tab.
+也可从 Web 仪表盘的 **市场** 选项卡访问。
 
 ---
 
-## Memory & RAG
+## 记忆 & RAG
 
-### Markdown Memory
+### Markdown 记忆
 
 ```
 ~/.pythonclaw/context/memory/
-├── MEMORY.md           # Curated long-term memory
-└── 2026-02-23.md       # Daily append-only log
+├── MEMORY.md           # 精选长期记忆
+└── 2026-02-23.md       # 每日追加日志
 ```
 
-When **per-group isolation** is enabled (`"isolation": { "perGroup": true }` in config),
-each session (Telegram chat, Discord channel, etc.) gets its own `memory/`, `persona/`,
-and `soul/` under `~/.pythonclaw/context/groups/<session-id>/`, while global memories
-remain accessible via read-through fallback.
+当启用 **按组隔离**（配置中 `"isolation": { "perGroup": true }`）时，
+每个会话（Telegram 聊天、Discord 频道等）在 `~/.pythonclaw/context/groups/<session-id>/` 下获取自己的 `memory/`、`persona/`
+和 `soul/`，而全局记忆仍可通过读取回退访问。
 
-### TOOLS.md — Local Notes
+### TOOLS.md — 本地笔记
 
 ```
 ~/.pythonclaw/context/tools/
-└── TOOLS.md              # Your environment-specific cheat sheet
+└── TOOLS.md              # 您的环境特定备忘单
 ```
 
-Skills define *how* tools work. `TOOLS.md` stores *your* specifics — SSH hosts, device
-nicknames, project paths, preferred defaults, API endpoints. Keeping them apart means
-you can update skills without losing your notes, and share skills without leaking your
-infrastructure. Editable from the web dashboard.
+技能定义工具的 *工作方式*。`TOOLS.md` 存储 *您的* 具体信息 — SSH 主机、设备
+昵称、项目路径、首选默认值、API 端点。将它们分开意味着
+您可以更新技能而不会丢失笔记，并且可以共享技能而不会泄露您的
+基础设施。可从 Web 仪表盘编辑。
 
-### Hybrid RAG Pipeline
+### 混合 RAG 管道
 
 ```
-Query → BM25 (sparse) + Embeddings (dense) → RRF Fusion → LLM Re-ranker → Top-K
+查询 → BM25 (稀疏) + 嵌入 (密集) → RRF 融合 → LLM 重排序 → Top-K
 ```
 
 ---
 
-## Use as a Library
+## 作为库使用
 
 ```python
 from pythonclaw import Agent
@@ -291,44 +269,44 @@ provider = OpenAICompatibleProvider(
 )
 
 agent = Agent(provider=provider)
-print(agent.chat("What is the capital of France?"))
+print(agent.chat("法国的首都是什么？"))
 ```
 
 ---
 
-## Project Structure
+## 项目结构
 
 ```
 PythonClaw/
 ├── pythonclaw/
-│   ├── main.py                # CLI entry (onboard/start/stop/status/chat/skill)
-│   ├── onboard.py             # Interactive setup wizard
-│   ├── daemon.py              # PID-based daemon lifecycle
-│   ├── server.py              # Multi-channel daemon server
+│   ├── main.py                # CLI 入口 (onboard/start/stop/status/chat/skill)
+│   ├── onboard.py             # 交互式设置向导
+│   ├── daemon.py              # 基于 PID 的守护进程生命周期
+│   ├── server.py              # 多渠道守护进程服务器
 │   ├── core/
-│   │   ├── agent.py           # Core reasoning loop
-│   │   ├── tools.py           # Tool schemas and execution
-│   │   ├── skill_loader.py    # Three-tier skill system
-│   │   ├── skillhub.py        # ClawHub marketplace client
+│   │   ├── agent.py           # 核心推理循环
+│   │   ├── tools.py           # 工具模式和执行
+│   │   ├── skill_loader.py    # 三层技能系统
+│   │   ├── skillhub.py        # ClawHub 市场客户端
 │   │   ├── persistent_agent.py
-│   │   ├── compaction.py      # Context compaction
-│   │   ├── llm/               # Provider adapters
-│   │   ├── memory/            # Markdown memory
-│   │   ├── knowledge/         # Knowledge-base RAG
-│   │   └── retrieval/         # BM25 + dense + fusion + reranker
+│   │   ├── compaction.py      # 上下文压缩
+│   │   ├── llm/               # 提供商适配器
+│   │   ├── memory/            # Markdown 记忆
+│   │   ├── knowledge/         # 知识库 RAG
+│   │   └── retrieval/         # BM25 + 密集 + 融合 + 重排序
 │   ├── channels/              # Telegram, Discord, WhatsApp
-│   ├── scheduler/             # Cron jobs, heartbeat
-│   ├── web/                   # FastAPI dashboard + static assets
-│   └── templates/             # Built-in skill templates
-├── context/                   # Runtime data (gitignored)
+│   ├── scheduler/             # 定时任务, 心跳
+│   ├── web/                   # FastAPI 仪表盘 + 静态资源
+│   └── templates/             # 内置技能模板
+├── context/                   # 运行时数据 (gitignored)
 ├── pyproject.toml
-├── pythonclaw.example.json    # Configuration template
+├── pythonclaw.example.json    # 配置模板
 └── LICENSE
 ```
 
 ---
 
-## Development
+## 开发
 
 ```bash
 git clone https://github.com/ericwang915/PythonClaw.git
@@ -340,35 +318,4 @@ pytest tests/ -v
 
 ---
 
-## Contributing
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
----
-
-## Comparison with OpenClaw
-
-| Feature | OpenClaw | PythonClaw |
-|---------|----------|------------|
-| Language | TypeScript / Node.js | **Python** |
-| Install | `npm i -g openclaw` | `pip install pythonclaw` |
-| CLI | `openclaw start/stop` | `pythonclaw start/stop/status` |
-| Dashboard | Web UI | Web UI (localhost:7788) |
-| Memory | Markdown | Markdown (long-term + daily) |
-| Skills | Plugin system | Three-tier + ClawHub marketplace |
-| Channels | Discord, Telegram, WhatsApp | CLI, Web, Telegram, Discord, WhatsApp |
-| Voice | — | Deepgram STT |
-| LLM Providers | OpenAI, Anthropic, Gemini | DeepSeek, Grok, Claude, Gemini, Kimi, GLM |
-| Daemon | Background process | PID-managed (`start`/`stop`/`status`) |
-
----
-
-## License
-
-[MIT](LICENSE)
-
----
-
-<p align="center">
-  <sub>If PythonClaw helps you, consider giving it a ⭐</sub>
-</p>

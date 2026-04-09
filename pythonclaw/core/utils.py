@@ -1,5 +1,5 @@
 """
-Shared utilities for pythonclaw.
+PythonClaw 的共享工具函数。
 """
 
 from __future__ import annotations
@@ -7,15 +7,15 @@ from __future__ import annotations
 
 def parse_frontmatter(content: str) -> tuple[dict, str]:
     """
-    Parse YAML-style frontmatter delimited by '---' from *content*.
+    从 *content* 中解析由 '---' 分隔的 YAML 风格前置内容。
 
-    Returns (metadata_dict, body_string).
-    If no frontmatter is found, returns ({}, content).
+    返回 (metadata_dict, body_string)。
+    如果没有找到前置内容，返回 ({}, content)。
 
-    Supports:
-      - Simple ``key: value`` pairs
-      - YAML block scalars (``>``, ``|``) with indented continuation lines
-      - Bare multi-line values (indented continuation lines without ``>`` / ``|``)
+    支持：
+      - 简单的 ``key: value`` 键值对
+      - 带有缩进续行的 YAML 块标量（``>``, ``|``）
+      - 裸多行值（没有 ``>`` / ``|`` 的缩进续行）
     """
     if not content.startswith("---"):
         return {}, content
@@ -27,7 +27,7 @@ def parse_frontmatter(content: str) -> tuple[dict, str]:
     metadata: dict[str, str] = {}
     current_key: str | None = None
     current_lines: list[str] = []
-    block_mode: str | None = None  # ">" (folded) or "|" (literal)
+    block_mode: str | None = None  # ">" (折叠) 或 "|" (字面)
 
     def _flush() -> None:
         if current_key is not None and current_lines:
@@ -37,12 +37,12 @@ def parse_frontmatter(content: str) -> tuple[dict, str]:
     for line in parts[1].strip().splitlines():
         stripped = line.strip()
 
-        # Continuation line (starts with whitespace and we have a current key)
+        # 续行（以空白字符开头且当前有键）
         if line and line[0] in (" ", "\t") and current_key is not None:
             current_lines.append(stripped)
             continue
 
-        # New key: value pair
+        # 新的键值对
         if ":" in stripped:
             _flush()
             key, _, value = stripped.partition(":")
